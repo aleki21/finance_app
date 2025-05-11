@@ -3,10 +3,16 @@ import 'package:finance_app/widgets/bottomnavigationbar.dart';
 import 'package:flutter/material.dart';
 import 'package:finance_app/Screens/home.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
 import 'data/model/add_date.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform
+  );
   await Hive.initFlutter();
   Hive.registerAdapter(AdddataAdapter());
   await Hive.openBox<Add_data>('data');

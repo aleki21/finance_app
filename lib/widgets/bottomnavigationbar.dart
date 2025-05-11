@@ -1,5 +1,6 @@
 import 'package:finance_app/Screens/add.dart';
 import 'package:finance_app/Screens/home.dart';
+import 'package:finance_app/Screens/login_page.dart';
 import 'package:finance_app/Screens/statistics.dart';
 import 'package:flutter/material.dart';
 
@@ -12,7 +13,7 @@ class Bottom extends StatefulWidget {
 
 class _BottomState extends State<Bottom> {
   int index_color = 0;
-  List Screen = [Home(), Statistics(), Home(), Statistics()];
+  List Screen = [Home(), Statistics(), Home(), LoginPage()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
