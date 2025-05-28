@@ -1,3 +1,4 @@
+import 'package:finance_app/Screens/auth_page.dart';
 import 'package:finance_app/Screens/statistics.dart';
 import 'package:finance_app/widgets/bottomnavigationbar.dart';
 import 'package:flutter/material.dart';
@@ -25,6 +26,9 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(debugShowCheckedModeBanner: false, home: Bottom());
+    return const MaterialApp(
+      debugShowCheckedModeBanner: false, 
+      home: AuthPage(),
+    );
   }
 }

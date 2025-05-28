@@ -1,23 +1,28 @@
 import 'package:finance_app/data/listdata.dart';
 import 'package:finance_app/data/model/add_date.dart';
 import 'package:finance_app/data/utility.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:intl/intl.dart';
 
 class Home extends StatefulWidget {
-  const Home({super.key});
+  Home({super.key});
 
   @override
   State<Home> createState() => _HomeState();
 }
 
 class _HomeState extends State<Home> {
+  final user = FirebaseAuth.instance.currentUser!;
   List<Add_data> a = [];
   var history;
   final box = Hive.box<Add_data>('data');
-  
+  void signUserOut() {
+    FirebaseAuth.instance.signOut();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -132,10 +137,10 @@ class _HomeState extends State<Home> {
                         height: 40,
                         width: 40,
                         color: Color.fromRGBO(250, 250, 250, 0.1),
-                        child: Icon(
-                          Icons.notification_add_outlined,
-                          size: 30,
-                          color: Colors.white,
+                        child: IconButton(
+                          onPressed: signUserOut,
+                          icon: Icon(Icons.logout, color: Colors.white),
+                          tooltip: 'Sign Out',
                         ),
                       ),
                     ),
@@ -154,7 +159,7 @@ class _HomeState extends State<Home> {
                           ),
                         ),
                         Text(
-                          'Alex Kimutai',
+                          "Hi, " + user.email!,
                           style: TextStyle(
                             fontWeight: FontWeight.w600,
                             fontSize: 20,
